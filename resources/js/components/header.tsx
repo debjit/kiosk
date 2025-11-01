@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                         />
                     </svg>
                 </div>
-                <h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">Luxe Gems</h2>
+                <h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">Alpana Gems</h2>
             </div>
             <div className="flex flex-1 justify-end gap-8">
                 <div className="flex items-center gap-9">

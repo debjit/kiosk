@@ -12,7 +12,7 @@ interface HomePageProps {
 const HomePage: React.FC<HomePageProps> = ({ className = '' }) => {
     return (
         <>
-            <Head title="Luxe Gems - Exquisite Jewelry for Every Occasion" />
+            <Head title="Alpana Gems - Exquisite Jewelry for Every Occasion" />
             <div className={`relative flex h-auto min-h-screen w-full flex-col bg-background group/design-root overflow-x-hidden ${className}`} style={{ fontFamily: 'Manrope, "Noto Sans", sans-serif' }}>
                 <div className="layout-container flex h-full grow flex-col">
                     <Header />
