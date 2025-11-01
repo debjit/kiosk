@@ -1,4 +1,5 @@
 # Open Kiosk
+Laravel + React + Intertia
 
 ### Initial Setup
 
