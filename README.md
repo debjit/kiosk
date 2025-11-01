@@ -1,4 +1,12 @@
 # Open Kiosk
+Laravel + React + Intertia
+
+## Homepage Previews
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/8f5174b4-c465-40ae-9801-3cb29b065a12" alt="Alpana Gems Homepage View 1" width="200" style="margin: 5px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"/>
+  <img src="https://github.com/user-attachments/assets/f4244cb3-ac7d-4d09-9540-d24c3fed5e0c" alt="Alpana Gems Homepage View 2" width="200" style="margin: 5px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"/>
+</div>
 
 ### Initial Setup
 
