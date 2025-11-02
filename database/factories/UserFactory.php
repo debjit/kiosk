@@ -39,6 +39,13 @@ final class UserFactory extends Factory
         ]);
     }
 
+    public function isAdmin(): self
+    {
+        return $this->state(fn (array $attributes): array => [
+            'is_admin' => true,
+        ]);
+    }
+
     public function withoutTwoFactor(): self
     {
         return $this->state(fn (array $attributes): array => [
