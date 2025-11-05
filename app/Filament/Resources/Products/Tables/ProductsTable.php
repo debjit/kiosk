@@ -58,7 +58,9 @@ final class ProductsTable
                     ->label('Active Products'),
                 SelectFilter::make('type')
                     ->relationship('type', 'name')
-                    ->label('Product Type'),
+                    ->label('Product Type')
+                    ->multiple()
+                    ->preload(),
                 SelectFilter::make('recommendation_score')
                     ->options([
                         1 => '1 - Poor',
