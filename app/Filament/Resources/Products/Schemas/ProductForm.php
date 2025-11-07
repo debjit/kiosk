@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use App\Enums\ProductCategory;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -47,7 +48,10 @@ final class ProductForm
                     ->required()
                     ->default(5)
                     ->helperText('Recommendation score from 1-10'),
-                TextInput::make('category'),
+                Select::make('category')
+                    ->options(ProductCategory::options())
+                    ->searchable()
+                    ->placeholder('Select a category'),
                 TextInput::make('sku')
                     ->label('SKU'),
                 TextInput::make('stock_quantity')
