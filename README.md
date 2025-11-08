@@ -1,5 +1,7 @@
 # Open Kiosk
-Laravel + React + Intertia
+Laravel + React + Intertia + PgVector + PgSql
+
+### We use pgvector; Postgres does the math; PHP only orchestrates.
 
 ## Homepage Previews
 
@@ -58,3 +60,46 @@ You should see 100% test coverage and all quality checks passing.
 
 ### Maintenance
 - `composer update:requirements` - Updates all PHP and NPM dependencies to latest versions
+
+## Configuration
+
+### Confidence Scores
+
+The jewelry recommendation system uses confidence scores to determine how well products match customer preferences. Confidence scores are stored as integers ranging from 1-100 (percentage-like scale).
+
+**Database Storage:**
+- **Type**: Integer
+- **Range**: 1-100
+- **Default**: 50 (medium confidence)
+
+**Usage in Calculations:**
+- Divide by 100.0 to normalize to 0.0-1.0 range for algorithm calculations
+- Higher values (closer to 100) indicate stronger confidence in the match
+- Lower values (closer to 1) indicate weaker confidence
+
+**Example:**
+```php
+// In recommendation algorithm
+$normalizedScore = $confidenceScore / 100.0; // Converts 50 → 0.5
+$finalScore = ($similarityScore * 0.6) + ($normalizedScore * 0.3);
+```
+
+**Admin Interface:**
+- Set confidence scores when tagging products (1-100 range)
+- Visual percentage-like scale for better user understanding
+- Default value of 50 for new product-tag associations
+
+## ⚠️ **Important Development Guidelines**
+
+### Database Operations
+- **NEVER run migrations without explicit user permission**
+- Always ask for confirmation before executing `php artisan migrate`
+- Create migrations for schema changes, but wait for approval before running them
+- Document any data transformations that will occur during migrations
+- When modifying existing data, always provide rollback strategies
+
+### Code Quality
+- Run `composer lint` before committing changes
+- Ensure all tests pass with `composer test`
+- Follow Laravel and project-specific coding standards
+- Use proper type hints and return types for all methods

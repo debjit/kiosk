@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Products\Schemas;
 
 use App\Enums\ProductCategory;
+use App\Models\Tag;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -58,6 +60,29 @@ final class ProductForm
                     ->required()
                     ->numeric()
                     ->default(0),
+                Repeater::make('tags')
+                    ->relationship('tags')
+                    ->schema([
+                        Select::make('tag_id')
+                            ->label('Tag')
+                            ->options(Tag::active()->pluck('name', 'id'))
+                            ->required()
+                            ->searchable()
+                            ->placeholder('Select a tag'),
+                        TextInput::make('confidence_score')
+                            ->label('Confidence Score')
+                            ->numeric()
+                            ->min(1)
+                            ->max(100)
+                            ->step(1)
+                            ->default(50)
+                            ->required()
+                            ->helperText('Confidence score between 1 and 100 (percentage-like: higher = more confident match)'),
+                    ])
+                    ->columns(2)
+                    ->columnSpanFull()
+                    ->defaultItems(0)
+                    ->helperText('Add tags with confidence scores for recommendation matching'),
                 Toggle::make('is_active')
                     ->required(),
             ]);

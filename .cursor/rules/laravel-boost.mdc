@@ -163,6 +163,10 @@ Route::get('/users', function () {
 - Pass `--no-interaction` to all Artisan commands to ensure they work without user input. You should also pass the correct `--options` to ensure correct behavior.
 
 ### Database
+- **NEVER run migrations without explicit user permission**
+- Always ask for confirmation before executing `php artisan migrate`
+- Create migrations for schema changes, but wait for approval before running them
+- Document any data transformations that will occur during migrations
 - Always use proper Eloquent relationship methods with return type hints. Prefer relationship methods over raw queries or manual joins.
 - Use Eloquent models and relationships before suggesting raw database queries
 - Avoid `DB::`; prefer `Model::query()`. Generate code that leverages Laravel's ORM capabilities rather than bypassing them.
