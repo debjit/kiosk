@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Services\Integrations\Ai\OpenAI\Requests;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;

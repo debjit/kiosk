@@ -41,6 +41,10 @@ final class AdminPanelProvider extends PanelProvider
             ->widgets([
                 UserInfoWidget::class,
             ])
+            ->navigationGroups([
+                'Products',
+                'Settings',
+            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
