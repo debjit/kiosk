@@ -10,6 +10,7 @@ use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property-read int $id
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read CarbonInterface $created_at
  * @property-read CarbonInterface $updated_at
  * @property-read string $formatted_price
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Tag> $tags
  */
 final class Product extends Model
 {
@@ -56,6 +58,17 @@ final class Product extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(ProductType::class, 'type_id');
+    }
+
+    /**
+     * @return BelongsToMany<Tag, $this>
+     */
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class)
+            ->withPivot('confidence_score')
+            ->withTimestamps()
+            ->orderByPivot('confidence_score', 'desc');
     }
 
     /**

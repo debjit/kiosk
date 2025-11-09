@@ -16,7 +16,18 @@ pest()->extend(Tests\TestCase::class)
 
         $this->freezeTime();
     })
-    ->in('Browser', 'Feature', 'Unit');
+    ->in('Browser', 'Feature');
+
+// Unit tests without RefreshDatabase to avoid migration issues
+pest()->extend(Tests\TestCase::class)
+    ->beforeEach(function (): void {
+        Str::createRandomStringsNormally();
+        Http::preventStrayRequests();
+        Sleep::fake();
+
+        $this->freezeTime();
+    })
+    ->in('Unit');
 
 expect()->extend('toBeOne', fn () => $this->toBe(1));
 
