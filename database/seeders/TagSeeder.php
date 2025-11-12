@@ -117,7 +117,10 @@ final class TagSeeder extends Seeder
         ];
 
         foreach ($tags as $tagData) {
-            \App\Models\Tag::query()->create($tagData);
+            \App\Models\Tag::query()->firstOrCreate(
+                ['name' => $tagData['name']],
+                $tagData
+            );
         }
     }
 }

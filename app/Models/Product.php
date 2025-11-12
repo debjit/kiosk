@@ -65,7 +65,12 @@ final class Product extends Model
      */
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class)
+        return $this->belongsToMany(
+            Tag::class,
+            'product_tags',
+            'product_id',
+            'tag_id',
+        )
             ->withPivot('confidence_score')
             ->withTimestamps()
             ->orderByPivot('confidence_score', 'desc');
