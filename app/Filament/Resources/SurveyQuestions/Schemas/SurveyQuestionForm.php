@@ -40,6 +40,7 @@ final class SurveyQuestionForm
                 Select::make('type')
                     ->label('Question Type')
                     ->options(SurveyQuestionType::options())
+                    ->live()
                     ->required(),
 
                 Repeater::make('questionOptions')
@@ -61,11 +62,12 @@ final class SurveyQuestionForm
                     ->orderColumn('position')
                     ->collapsed()
                     ->addActionLabel('Add option')
-                    ->visible(fn (callable $get): bool => in_array($get('type'), [
-                        SurveyQuestionType::SingleChoice->value,
-                        SurveyQuestionType::MultipleChoice->value,
-                        'multiple_selection',
-                    ], true)),
+                    ->visible(
+                        fn (callable $get): bool => in_array($get('type'), [
+                            SurveyQuestionType::SingleChoice->value,
+                            SurveyQuestionType::MultipleChoice->value,
+                        ], true)
+                    ),
 
                 Toggle::make('is_required')
                     ->label('Required')
